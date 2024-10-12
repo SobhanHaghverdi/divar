@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
-  "scripts": {},
+  "scripts": {
+    "start": "dotenvx run -- node server.js",
+    "develop": "dotenvx run --debug --log-level=debug -- nodemon node server.js"
+  },
   "keywords": [],
   "author": "Sobhan Haghverdi",
   "license": "UNLICENSED",
