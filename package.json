@@ -1,0 +1,16 @@
+{
+  "name": "divar",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {},
+  "keywords": [],
+  "author": "Sobhan Haghverdi",
+  "license": "UNLICENSED",
+  "type": "module",
+  "dependencies": {
+    "express": "^4.21.1",
+    "mongoose": "^8.7.1"
+  },
+  "homepage": "https://github.com/SobhanHaghverdi/divar"
+}
