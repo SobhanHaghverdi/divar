@@ -16,7 +16,7 @@ function configureSwagger(app) {
         contact: { name: "Sobhan Haghverdi", email: "sobhanhv.dev@gmail.com" },
       },
     },
-    apis: [],
+    apis: [process.cwd() + "/src/modules/**/*-swagger.js"],
   });
 
   const swagger = swaggerUi.setup(swaggerDocument, {
