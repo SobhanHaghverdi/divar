@@ -1,7 +1,10 @@
 import express from "express";
+import "express-async-errors";
 import mainRouter from "./src/app-routes.js";
 import configureSwagger from "./src/config/swagger-config.js";
 import configureMongoose from "./src/config/mongoose-config.js";
+import notFoundHandler from "./src/common/middlewares/not-found-handler.js";
+import globalErrorHandler from "./src/common/middlewares/global-error-handler.js";
 
 const PORT = process.env.PORT;
 
@@ -10,6 +13,8 @@ async function configureServer() {
 
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
+  app.use(notFoundHandler);
+  app.use(globalErrorHandler);
 
   app.use("/api", mainRouter);
 
