@@ -25,7 +25,6 @@ class AuthController {
         signed: true,
         httpOnly: true,
         priority: "high",
-        sameSite: "none",
         maxAge: 2592000000,
         secure: process.env.NODE_ENV === NodeEnv.Production,
       })

@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
 import createHttpError from "http-errors";
-import AuthorizationMessage from "../messages/auth-messages.js";
 import User from "../../modules/user/user-model.js";
+import AuthorizationMessage from "../messages/auth-messages.js";
 
 const authorize = async (req, res, next) => {
   try {
@@ -14,7 +14,12 @@ const authorize = async (req, res, next) => {
     const data = jwt.verify(token, process.env.JWT_SECRET_KEY);
 
     if (data?.id) {
-      const user = await User.findById(data?.id, { otp: 0 }).lean();
+      const user = await User.findById(data?.id, {
+        otp: 0,
+        __v: 0,
+        updatedAt: 0,
+        isPhoneNumberVerified: 0,
+      }).lean();
 
       if (!user) {
         throw new createHttpError.Unauthorized(
