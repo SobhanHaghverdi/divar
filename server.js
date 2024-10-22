@@ -1,5 +1,6 @@
 import express from "express";
 import "express-async-errors";
+import cookieParser from "cookie-parser";
 import mainRouter from "./src/app-routes.js";
 import configureSwagger from "./src/config/swagger-config.js";
 import configureMongoose from "./src/config/mongoose-config.js";
@@ -13,6 +14,8 @@ async function configureServer() {
 
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
+  app.use(cookieParser(process.env.COOKIE_SECRET_KEY));
+
   app.use("/api", mainRouter);
 
   await configureMongoose();
