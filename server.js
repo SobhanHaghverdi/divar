@@ -13,13 +13,13 @@ async function configureServer() {
 
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
-  app.use(notFoundHandler);
-  app.use(globalErrorHandler);
-
   app.use("/api", mainRouter);
 
   await configureMongoose();
   configureSwagger(app);
+
+  app.use(notFoundHandler);
+  app.use(globalErrorHandler);
 
   app.listen(PORT, () => {});
 }

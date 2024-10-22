@@ -12,10 +12,15 @@ class AuthController {
 
   async sendOTP(req, res) {
     await this.#service.sendOTP(req.body.phoneNumber);
-    return { message: AuthMessage.OtpSentSuccessfully };
+    return res.json({ message: AuthMessage.OtpSentSuccessfully });
   }
 
-  async checkOTP(req, res) {}
+  async checkOTP(req, res) {
+    const { phoneNumber, code } = req.body;
+
+    await this.#service.checkOTP(phoneNumber, code);
+    return res.json({ message: AuthMessage.LoggedInSuccessfully });
+  }
 
   async logout(req, res) {}
 }
