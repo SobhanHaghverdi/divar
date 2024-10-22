@@ -16,20 +16,24 @@
  *              properties:
  *                  phoneNumber:
  *                      type: string
- *                      minLength: 10
- *                      maxLength: 10
+ *                      minLength: 11
+ *                      maxLength: 11
  *                      default: ""
- *          Update Counseling Session:
+ *          CheckOtp:
  *              type: object
  *              required:
- *                  -   status
+ *                  -   code
+ *                  -   phoneNumber
  *              properties:
- *                  status:
- *                      type: object
- *                      default: {value: "reserve", label: "رزرو"}
- *                  description:
+ *                  code:
  *                      type: string
- *                      maxLength: 800
+ *                      minLength: 5
+ *                      maxLength: 5
+ *                      default: ""
+ *                  phoneNumber:
+ *                      type: string
+ *                      minLength: 11
+ *                      maxLength: 11
  *                      default: ""
  */
 
@@ -51,5 +55,26 @@
  *      responses:
  *          200:
  *              description: Otp Sent successfully
+
+ */
+
+/**
+ * @swagger
+ * /api/auth/check-otp:
+ *  post:
+ *      summary: Checks otp for login
+ *      tags:
+ *          -   Auth
+ *      requestBody:
+ *          content:
+ *              application/x-www-form-urlencoded:
+ *                  schema:
+ *                      $ref: "#/components/schemas/CheckOtp"
+ *              application/json:
+ *                  schema:
+ *                      $ref: "#/components/schemas/CheckOtp"
+ *      responses:
+ *          200:
+ *              description: Logged in successfully
 
  */

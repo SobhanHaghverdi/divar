@@ -1,3 +1,4 @@
+import jwt from "jsonwebtoken";
 import { randomInt } from "crypto";
 import User from "../user/user-model.js";
 import createHttpError from "http-errors";
@@ -35,13 +36,41 @@ class AuthService {
     return user;
   }
 
-  async checkOTP(phoneNumber, code) {}
+  async checkOTP(phoneNumber, code) {
+    const user = await this.checkExistenceByPhoneNumber(phoneNumber);
+
+    if (user?.otp?.expiresIn <= Date.now()) {
+      throw new createHttpError.Unauthorized(AuthMessage.OtpExpired);
+    }
+
+    if (user?.otp?.code !== code) {
+      throw new createHttpError.Unauthorized(AuthMessage.OtpIncorrect);
+    }
+
+    if (!user.isPhoneNumberVerified) {
+      user.isPhoneNumberVerified = true;
+    }
+
+    await this.#userModel.updateOne(
+      { _id: user._id },
+      { $set: { isPhoneNumberVerified: user.isPhoneNumberVerified } }
+    );
+
+    return this.#signToken({ phoneNumber, id: user._id });
+  }
 
   async checkExistenceByPhoneNumber(phoneNumber) {
     const user = await this.#userModel.findOne({ phoneNumber }).lean();
 
     if (!user) throw new createHttpError.NotFound(AuthMessage.UserNotFound);
     return user;
+  }
+
+  #signToken(payload) {
+    return jwt.sign(payload, process.env.JWT_SECRET_KEY, {
+      expiresIn: "30d",
+      algorithm: "HS512",
+    });
   }
 }
 
