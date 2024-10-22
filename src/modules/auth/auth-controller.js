@@ -1,6 +1,7 @@
 import AuthService from "./auth-service.js";
 import AuthMessage from "./auth-messages.js";
 import autoBind from "../../common/utils/auto-bind.js";
+import NodeEnv from "../../common/constants/env-enum.js";
 
 class AuthController {
   #service;
@@ -17,9 +18,18 @@ class AuthController {
 
   async checkOTP(req, res) {
     const { phoneNumber, code } = req.body;
+    const accessToken = await this.#service.checkOTP(phoneNumber, code);
 
-    await this.#service.checkOTP(phoneNumber, code);
-    return res.json({ message: AuthMessage.LoggedInSuccessfully });
+    return res
+      .cookie("access_token", accessToken, {
+        signed: true,
+        httpOnly: true,
+        priority: "high",
+        sameSite: "none",
+        maxAge: 2592000000,
+        secure: process.env.NODE_ENV === NodeEnv.Production,
+      })
+      .json({ message: AuthMessage.LoggedInSuccessfully });
   }
 
   async logout(req, res) {}
