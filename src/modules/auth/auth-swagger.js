@@ -39,6 +39,18 @@
 
 /**
  * @swagger
+ * /api/auth/log-out:
+ *  get:
+ *      summary: Logs out current user
+ *      tags:
+ *          -   Auth
+ *      responses:
+ *          200:
+ *              description: Logged out successfully
+ */
+
+/**
+ * @swagger
  * /api/auth/send-otp:
  *  post:
  *      summary: Sends a new otp for login

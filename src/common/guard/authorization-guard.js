@@ -1,11 +1,12 @@
 import jwt from "jsonwebtoken";
 import createHttpError from "http-errors";
 import User from "../../modules/user/user-model.js";
+import CookieName from "../constants/cookie-enum.js";
 import AuthorizationMessage from "../messages/auth-messages.js";
 
 const authorize = async (req, res, next) => {
   try {
-    const token = req?.signedCookies?.access_token;
+    const token = req?.signedCookies[CookieName.AccessToken];
 
     if (!token) {
       throw new createHttpError.Unauthorized(AuthorizationMessage.Login);

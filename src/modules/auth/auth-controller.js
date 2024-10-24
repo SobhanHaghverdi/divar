@@ -2,6 +2,7 @@ import AuthService from "./auth-service.js";
 import AuthMessage from "./auth-messages.js";
 import autoBind from "../../common/utils/auto-bind.js";
 import NodeEnv from "../../common/constants/env-enum.js";
+import CookieName from "../../common/constants/cookie-enum.js";
 
 class AuthController {
   #service;
@@ -21,7 +22,7 @@ class AuthController {
     const accessToken = await this.#service.checkOTP(phoneNumber, code);
 
     return res
-      .cookie("access_token", accessToken, {
+      .cookie(CookieName.AccessToken, accessToken, {
         signed: true,
         httpOnly: true,
         priority: "high",
@@ -31,7 +32,11 @@ class AuthController {
       .json({ message: AuthMessage.LoggedInSuccessfully });
   }
 
-  async logout(req, res) {}
+  async logOut(req, res) {
+    return res
+      .clearCookie(CookieName.AccessToken)
+      .json({ message: AuthMessage.LoggedOutSuccessfully });
+  }
 }
 
 export default new AuthController();
