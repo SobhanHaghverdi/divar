@@ -1,10 +1,12 @@
 import { Router } from "express";
 import authRouter from "./modules/auth/auth-router.js";
 import userRouter from "./modules/user/user-router.js";
+import categoryRouter from "./modules/category/category-router.js";
 
 const mainRouter = Router({ caseSensitive: true });
 
 mainRouter.use("/auth", authRouter);
 mainRouter.use("/users", userRouter);
+mainRouter.use("/categories", categoryRouter);
 
 export default mainRouter;

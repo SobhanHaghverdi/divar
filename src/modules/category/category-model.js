@@ -13,7 +13,7 @@ const CategorySchema = new Schema(
       lowercase: true,
     },
   },
-  { strict: true, virtuals: true, versionKey: false, id: false }
+  { strict: true, toJSON: { virtuals: true }, versionKey: false, id: false }
 );
 
 CategorySchema.virtual("children", {
