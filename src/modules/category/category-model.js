@@ -2,8 +2,8 @@ import { model, Schema, Types } from "mongoose";
 
 const CategorySchema = new Schema(
   {
-    parent: { type: Types.ObjectId, ref: "Category" },
     name: { type: String, required: true, trim: true },
+    parent: { type: Types.ObjectId, ref: "Category", index: true },
     parents: { type: [Types.ObjectId], ref: "Category", default: undefined },
     slug: {
       type: String,
@@ -22,6 +22,12 @@ CategorySchema.virtual("children", {
   foreignField: "parent",
 });
 
+const autoPopulate = (next) => {
+  this.populate([{ path: "children" }]);
+  next();
+};
+
+CategorySchema.pre("find", autoPopulate).pre("findOne", autoPopulate);
 const Category = model("Category", CategorySchema);
 
 export default Category;

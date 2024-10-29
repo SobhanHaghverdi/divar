@@ -4,6 +4,7 @@ import authorize from "../../common/guard/authorization-guard.js";
 
 const categoryRouter = Router({ caseSensitive: true });
 
+categoryRouter.get("/", CategoryController.getAll);
 categoryRouter.post("/", authorize, CategoryController.create);
 
 export default categoryRouter;
