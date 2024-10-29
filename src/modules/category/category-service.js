@@ -11,7 +11,9 @@ class CategoryService {
     this.#model = Category;
   }
 
-  async getAll() {}
+  async getAll() {
+    return await this.#model.find({ parent: { $exists: false } }).lean();
+  }
 
   async checkExistenceById(id) {
     const category = await this.#model.findById(id).lean();
@@ -35,16 +37,15 @@ class CategoryService {
 
     if (parent) {
       const parentCategory = await this.checkExistenceById(parent);
-      dto.parent = parentCategory._id;
 
-      dto.parents = [
-        ...new Set(
-          [
-            parentCategory._id.toString(),
-            ...parentCategory.parents.map((id) => id.toString()),
-          ].map((id) => new Types.ObjectId(id))
-        ),
-      ];
+      const parents = [parentCategory?._id.toString()];
+
+      if (parentCategory?.parents && parentCategory?.parents.length > 0) {
+        parents.push(...parentCategory.parents.map((id) => id.toString()));
+      }
+
+      dto.parent = parentCategory._id;
+      dto.parents = [...new Set(parents.map((id) => new Types.ObjectId(id)))];
     }
 
     if (slug) {
