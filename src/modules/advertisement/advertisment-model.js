@@ -1,6 +1,6 @@
 const { model, Schema, Types } = require("mongoose");
 
-const AdvertismentSchema = new Schema(
+const AdvertisementSchema = new Schema(
   {
     coordinates: { type: [Number], required: true },
     city: { type: String, required: true, trim: true },
@@ -19,5 +19,5 @@ const AdvertismentSchema = new Schema(
   { strict: true }
 );
 
-const Advertisment = model("Advertisment", AdvertismentSchema);
-export default Advertisment;
+const Advertisement = model("Advertisement", AdvertisementSchema);
+export default Advertisement;
