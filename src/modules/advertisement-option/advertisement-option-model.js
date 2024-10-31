@@ -1,4 +1,4 @@
-const { model, Schema, Types } = require("mongoose");
+import { model, Schema, Types } from "mongoose";
 
 const AdvertisementOptionSchema = new Schema(
   {
@@ -7,7 +7,11 @@ const AdvertisementOptionSchema = new Schema(
     key: { type: String, required: true, trim: true },
     title: { type: String, required: true, trim: true },
     category: { type: Types.ObjectId, ref: "Category", required: true },
-    type: { type: String, enum: ["number", "string", "array", "boolean"] },
+    type: {
+      type: String,
+      required: true,
+      enum: ["number", "string", "array", "boolean"],
+    },
   },
   { strict: true }
 );
