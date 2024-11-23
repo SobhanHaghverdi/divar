@@ -28,7 +28,7 @@
  *                          -   array
  *                          -   number
  *                          -   string
- *                          -   bollean
+ *                          -   boolean
  *                  title:
  *                      type: string
  *                      minLength: 3
