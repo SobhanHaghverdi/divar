@@ -10,11 +10,23 @@ class AdvertisementOptionController {
     this.#service = AdvertisementOptionService;
   }
 
-  async get(req, res) {}
+  async get(req, res) {
+    const advertisementOption = await this.#service.getById(req.params.id);
+    return res.json(advertisementOption);
+  }
 
-  async getAll(req, res) {}
+  async getByCategory(req, res) {
+    const advertisementOption = await this.#service.getByCategoryId(
+      req.params.categoryId
+    );
 
-  async getByCategory(req, res) {}
+    return res.json(advertisementOption);
+  }
+
+  async getAll(req, res) {
+    const advertisementOptions = await this.#service.getAll();
+    return res.json(advertisementOptions);
+  }
 
   async create(req, res) {
     await this.#service.create(req.body);

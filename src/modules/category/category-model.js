@@ -22,10 +22,10 @@ CategorySchema.virtual("children", {
   foreignField: "parent",
 });
 
-const autoPopulate = (next) => {
+function autoPopulate(next) {
   this.populate([{ path: "children" }]);
   next();
-};
+}
 
 CategorySchema.pre("find", autoPopulate).pre("findOne", autoPopulate);
 const Category = model("Category", CategorySchema);
