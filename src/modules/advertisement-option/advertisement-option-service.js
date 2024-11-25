@@ -12,6 +12,24 @@ class AdvertisementOptionService {
     this.#model = AdvertisementOption;
   }
 
+  async getById(id) {
+    return await this.#model.findById(id).lean();
+  }
+
+  async getByCategoryId(categoryId) {
+    return await this.#model
+      .findOne({ category: categoryId }, { __v: 0 })
+      .lean()
+      .populate("category");
+  }
+
+  async getAll() {
+    return await this.#model
+      .find({}, { __v: 0 }, { sort: { _id: -1 } })
+      .lean()
+      .populate("category");
+  }
+
   async create(dto) {
     const { key, category, enum: enumList = undefined } = dto;
 

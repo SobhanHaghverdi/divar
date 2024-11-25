@@ -84,7 +84,7 @@
 
 /**
  * @swagger
- * /api/advertisement-options/{categoryId}:
+ * /api/advertisement-options/category/{categoryId}:
  *  get:
  *      summary: Gets advertisement options by category id
  *      tags:
