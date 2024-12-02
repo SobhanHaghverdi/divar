@@ -23,6 +23,37 @@ class AdvertisementOptionService {
       .populate("category");
   }
 
+  async getAllByCategorySlug(slug) {
+    return await this.#model.aggregate([
+      {
+        $lookup: {
+          from: "categories",
+          localField: "category",
+          foreignField: "_id",
+          as: "category",
+        },
+      },
+      {
+        $unwind: "$category",
+      },
+      {
+        $addFields: {
+          categorySlug: "$category.slug",
+          categoryName: "$category.name",
+        },
+      },
+      {
+        $match: { categorySlug: slug.trim() },
+      },
+      {
+        $project: {
+          __v: 0,
+          category: 0,
+        },
+      },
+    ]);
+  }
+
   async getAll() {
     return await this.#model
       .find({}, { __v: 0 }, { sort: { _id: -1 } })

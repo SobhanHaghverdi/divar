@@ -12,6 +12,11 @@ advertisementOptionRouter.get(
   AdvertisementOptionController.getByCategory
 );
 
+advertisementOptionRouter.get(
+  "/category-slug/:slug",
+  AdvertisementOptionController.getAllByCategorySlug
+);
+
 advertisementOptionRouter.post(
   "/",
   authorize,

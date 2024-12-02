@@ -23,6 +23,14 @@ class AdvertisementOptionController {
     return res.json(advertisementOption);
   }
 
+  async getAllByCategorySlug(req, res) {
+    const advertisementOptions = await this.#service.getAllByCategorySlug(
+      req.params.slug
+    );
+
+    return res.json(advertisementOptions);
+  }
+
   async getAll(req, res) {
     const advertisementOptions = await this.#service.getAll();
     return res.json(advertisementOptions);
