@@ -23,4 +23,10 @@ advertisementOptionRouter.post(
   AdvertisementOptionController.create
 );
 
+advertisementOptionRouter.delete(
+  "/:id",
+  authorize,
+  AdvertisementOptionController.delete
+);
+
 export default advertisementOptionRouter;

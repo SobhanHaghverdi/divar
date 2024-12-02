@@ -98,6 +98,14 @@ class AdvertisementOptionService {
 
     return await this.#model.create(dto);
   }
+
+  async deleteById(id) {
+    const result = await this.#model.deleteOne({ _id: id });
+
+    if (result.deletedCount === 0) {
+      throw createHttpError.NotFound(AdvertisementOptionMessage.NotFound);
+    }
+  }
 }
 
 export default new AdvertisementOptionService();
