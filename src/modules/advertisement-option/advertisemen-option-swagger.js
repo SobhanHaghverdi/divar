@@ -104,6 +104,26 @@
 
 /**
  * @swagger
+ * /api/advertisement-options/category-slug/{slug}:
+ *  get:
+ *      summary: Gets advertisement options by category slug
+ *      tags:
+ *          -   Advertisement Option
+ *      parameters:
+ *          -   in: path
+ *              name: slug
+ *              required: true
+ *              schema:
+ *                  type: string
+ *                  minLength: 2
+ *                  maxLength: 150
+ *      responses:
+ *          200:
+ *              description: Advertisement options list
+ */
+
+/**
+ * @swagger
  * /api/advertisement-options:
  *  post:
  *      summary: Creates a new advertisement option
