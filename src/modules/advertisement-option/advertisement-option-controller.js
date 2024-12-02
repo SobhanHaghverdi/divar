@@ -43,6 +43,14 @@ class AdvertisementOptionController {
       .status(201)
       .json({ message: AdvertisementOptionMessage.CreatedSuccessfully });
   }
+
+  async delete(req, res) {
+    await this.#service.deleteById(req.params.id);
+
+    return res.json({
+      message: AdvertisementOptionMessage.DeletedSuccessfully,
+    });
+  }
 }
 
 export default new AdvertisementOptionController();

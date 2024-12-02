@@ -142,3 +142,23 @@
  *              description: Advertisement option created successfully
 
  */
+
+/**
+ * @swagger
+ * /api/advertisement-options/{id}:
+ *  delete:
+ *      summary: Deletes advertisement option by id
+ *      tags:
+ *          -   Advertisement Option
+ *      parameters:
+ *          -   in: path
+ *              name: id
+ *              required: true
+ *              schema:
+ *                  type: string
+ *                  minLength: 24
+ *                  maxLength: 24
+ *      responses:
+ *          200:
+ *              description: Deleted successfully
+ */
