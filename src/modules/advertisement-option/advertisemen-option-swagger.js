@@ -48,6 +48,8 @@
  *                      type: string
  *                      maxLength: 200
  *                      default: ""
+ *                  required:
+ *                      type: boolean
  */
 
 /**
