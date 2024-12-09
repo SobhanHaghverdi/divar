@@ -61,3 +61,23 @@
  *              description: Category created successfully
 
  */
+
+/**
+ * @swagger
+ * /api/categories/{id}:
+ *  delete:
+ *      summary: Deletes category by id
+ *      tags:
+ *          -   Category
+ *      parameters:
+ *          -   in: path
+ *              name: id
+ *              required: true
+ *              schema:
+ *                  type: string
+ *                  minLength: 24
+ *                  maxLength: 24
+ *      responses:
+ *          200:
+ *              description: Deleted successfully
+ */

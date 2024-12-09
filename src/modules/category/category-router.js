@@ -6,5 +6,6 @@ const categoryRouter = Router({ caseSensitive: true });
 
 categoryRouter.get("/", CategoryController.getAll);
 categoryRouter.post("/", authorize, CategoryController.create);
+categoryRouter.delete("/:id", authorize, CategoryController.delete);
 
 export default categoryRouter;
