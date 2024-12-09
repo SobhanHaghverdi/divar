@@ -23,6 +23,12 @@ advertisementOptionRouter.post(
   AdvertisementOptionController.create
 );
 
+advertisementOptionRouter.patch(
+  "/:id",
+  authorize,
+  AdvertisementOptionController.update
+);
+
 advertisementOptionRouter.delete(
   "/:id",
   authorize,

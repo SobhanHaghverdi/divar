@@ -50,6 +50,39 @@
  *                      default: ""
  *                  required:
  *                      type: boolean
+ *          UpdateAdvertisementOption:
+ *              type: object
+ *              properties:
+ *                  key:
+ *                      type: string
+ *                      maxLength: 100
+ *                      default: ""
+ *                  type:
+ *                      type: string
+ *                      enum:
+ *                          -   array
+ *                          -   number
+ *                          -   string
+ *                          -   boolean
+ *                  title:
+ *                      type: string
+ *                      maxLength: 100
+ *                      default: ""
+ *                  category:
+ *                      type: string
+ *                      maxLength: 24
+ *                      default: ""
+ *                  enum:
+ *                      type: array
+ *                      default: []
+ *                      items:
+ *                          type: string
+ *                  guide:
+ *                      type: string
+ *                      maxLength: 200
+ *                      default: ""
+ *                  required:
+ *                      type: boolean
  */
 
 /**
@@ -142,7 +175,34 @@
  *      responses:
  *          200:
  *              description: Advertisement option created successfully
+ */
 
+/**
+ * @swagger
+ * /api/advertisement-options/{id}:
+ *  patch:
+ *      summary: Updates advertisement option
+ *      tags:
+ *          -   Advertisement Option
+ *      parameters:
+ *          -   in: path
+ *              name: id
+ *              required: true
+ *              schema:
+ *                  type: string
+ *                  minLength: 24
+ *                  maxLength: 24
+ *      requestBody:
+ *          content:
+ *              application/x-www-form-urlencoded:
+ *                  schema:
+ *                      $ref: "#/components/schemas/UpdateAdvertisementOption"
+ *              application/json:
+ *                  schema:
+ *                      $ref: "#/components/schemas/UpdateAdvertisementOption"
+ *      responses:
+ *          200:
+ *              description: Advertisement option updated successfully
  */
 
 /**

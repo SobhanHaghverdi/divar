@@ -44,6 +44,14 @@ class AdvertisementOptionController {
       .json({ message: AdvertisementOptionMessage.CreatedSuccessfully });
   }
 
+  async update(req, res) {
+    await this.#service.update(req.params.id, req.body);
+
+    return res.json({
+      message: AdvertisementOptionMessage.UpdatedSuccessfully,
+    });
+  }
+
   async delete(req, res) {
     await this.#service.deleteById(req.params.id);
 

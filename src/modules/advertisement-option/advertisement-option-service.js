@@ -99,6 +99,41 @@ class AdvertisementOptionService {
     return await this.#model.create(dto);
   }
 
+  async update(id, dto) {
+    const {
+      key = undefined,
+      category = undefined,
+      enum: enumList = undefined,
+    } = dto;
+
+    const advertisementOption = await this.#model.findById(id);
+
+    if (key) {
+      dto.key = slugify(key, {
+        trim: true,
+        lower: true,
+        replacement: "_",
+      });
+
+      const existingKey = await this.#model
+        .findOne({ key, category: category || advertisementOption.category })
+        .select("_id")
+        .lean();
+
+      if (existingKey) {
+        throw new createHttpError.Conflict(
+          AdvertisementOptionMessage.CategoryKeyAlreadyExists
+        );
+      }
+    }
+
+    if (enumList && typeof enumList === "string") {
+      dto.enum = enumList.split(",");
+    }
+
+    return await this.#model.updateOne({ _id: id }, { $set: dto });
+  }
+
   async deleteById(id) {
     const result = await this.#model.deleteOne({ _id: id });
 
