@@ -22,6 +22,14 @@ class CategoryController {
       .status(201)
       .json({ message: CategoryMessage.CreatedSuccessfully });
   }
+
+  async delete(req, res) {
+    await this.#service.deleteById(req.params.id);
+
+    return res.json({
+      message: CategoryMessage.DeletedSuccessfully,
+    });
+  }
 }
 
 export default new CategoryController();

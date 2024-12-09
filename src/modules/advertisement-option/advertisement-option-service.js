@@ -141,6 +141,10 @@ class AdvertisementOptionService {
       throw createHttpError.NotFound(AdvertisementOptionMessage.NotFound);
     }
   }
+
+  async deleteAllByCategoryId(categoryId) {
+    await this.#model.deleteMany({ category: categoryId });
+  }
 }
 
 export default new AdvertisementOptionService();

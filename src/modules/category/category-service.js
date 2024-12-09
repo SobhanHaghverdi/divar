@@ -3,12 +3,15 @@ import { Types } from "mongoose";
 import createHttpError from "http-errors";
 import Category from "./category-model.js";
 import CategoryMessage from "./category-messages.js";
+import AdvertisementOptionService from "../advertisement-option/advertisement-option-service.js";
 
 class CategoryService {
   #model;
+  #advertisementOptionService;
 
   constructor() {
     this.#model = Category;
+    this.#advertisementOptionService = AdvertisementOptionService;
   }
 
   async getAll() {
@@ -58,6 +61,16 @@ class CategoryService {
 
     const category = await this.#model.create(dto);
     return category;
+  }
+
+  async deleteById(id) {
+    const result = await this.#model.deleteOne({ _id: id });
+
+    if (result.deletedCount === 0) {
+      throw createHttpError.NotFound(CategoryMessage.NotFound);
+    }
+
+    await this.#advertisementOptionService.deleteAllByCategoryId(id);
   }
 }
 
