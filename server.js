@@ -2,6 +2,7 @@ import express from "express";
 import "express-async-errors";
 import cookieParser from "cookie-parser";
 import mainRouter from "./src/app-routes.js";
+import expressEjsLayouts from "express-ejs-layouts";
 import configureSwagger from "./src/config/swagger-config.js";
 import configureMongoose from "./src/config/mongoose-config.js";
 import notFoundHandler from "./src/common/middlewares/not-found-handler.js";
@@ -15,6 +16,10 @@ async function configureServer() {
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
   app.use(cookieParser(process.env.COOKIE_SECRET_KEY));
+  app.use(express.static("public"));
+  app.use(expressEjsLayouts);
+  app.set("view engine", "ejs");
+  app.set("layout", "./layouts/panel/main.ejs");
 
   app.use("/api", mainRouter);
 
