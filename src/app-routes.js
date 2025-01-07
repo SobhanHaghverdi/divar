@@ -4,7 +4,7 @@ import userRouter from "./modules/user/user-router.js";
 import categoryRouter from "./modules/category/category-router.js";
 import advertisementOptionRouter from "./modules/advertisement-option/advertisement-option-router.js";
 
-const mainRouter = Router({ caseSensitive: true });
+const mainRouter = Router();
 
 mainRouter.use("/auth", authRouter);
 mainRouter.use("/users", userRouter);
