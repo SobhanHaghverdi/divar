@@ -21,6 +21,10 @@ async function configureServer() {
   app.set("view engine", "ejs");
   app.set("layout", "./layouts/panel/main.ejs");
 
+  app.get("/", (req, res) => {
+    res.render("./pages/panel/dashboard.ejs");
+  });
+
   app.use("/api", mainRouter);
 
   await configureMongoose();
