@@ -22,7 +22,17 @@ async function configureServer() {
   app.set("layout", "./layouts/panel/main.ejs");
 
   app.get("/", (req, res) => {
+    res.locals.layout = "./layouts/website/main.ejs";
+    res.render("./pages/home/index.ejs");
+  });
+
+  app.get("/panel", (req, res) => {
     res.render("./pages/panel/dashboard.ejs");
+  });
+
+  app.get("/auth/login", (req, res) => {
+    res.locals.layout = "./layouts/auth/main.ejs";
+    res.render("./pages/auth/login.ejs");
   });
 
   app.use("/api", mainRouter);
