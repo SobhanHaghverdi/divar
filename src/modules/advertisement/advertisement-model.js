@@ -1,4 +1,4 @@
-const { model, Schema, Types } = require("mongoose");
+import { model, Schema } from "mongoose";
 
 const AdvertisementSchema = new Schema(
   {
@@ -10,7 +10,7 @@ const AdvertisementSchema = new Schema(
     district: { type: String, required: true, trim: true },
     description: { type: String, required: true, trim: true },
     category: {
-      type: Types.ObjectId,
+      type: Schema.Types.ObjectId,
       ref: "Category",
       index: true,
       required: true,
