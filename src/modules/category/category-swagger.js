@@ -13,10 +13,16 @@
  *              type: object
  *              required:
  *                  -   name
+ *                  -   imageName
  *              properties:
  *                  name:
  *                      type: string
  *                      minLength: 3
+ *                      maxLength: 100
+ *                      default: ""
+ *                  imageName:
+ *                      type: string
+ *                      minLength: 1
  *                      maxLength: 100
  *                      default: ""
  *                  slug:

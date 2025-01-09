@@ -18,6 +18,25 @@ class CategoryService {
     return await this.#model.find({ parent: { $exists: false } }).lean();
   }
 
+  async getAllWithoutRelation(slug = undefined) {
+    const filterMatch = { parent: null };
+
+    if (slug) {
+      const category = await this.#model
+        .findOne({ slug: slug.trim() })
+        .select("_id")
+        .lean();
+
+      if (!category) {
+        return createHttpError.NotFound(CategoryMessage.NotFound);
+      }
+
+      filterMatch.parent = category._id;
+    }
+
+    return await this.#model.aggregate([{ $match: filterMatch }]);
+  }
+
   async checkExistenceById(id) {
     const category = await this.#model.findById(id).lean();
 

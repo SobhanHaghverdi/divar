@@ -1,16 +1,26 @@
 import autoBind from "../../common/utils/auto-bind.js";
 import AdvertisementService from "./advertisement-service.js";
+import CategoryService from "../category/category-service.js";
 
 class AdvertisementController {
-  #service;
+  #categoryService;
+  #advertisementService;
 
   constructor() {
     autoBind(this);
-    this.#service = AdvertisementService;
+
+    this.#categoryService = CategoryService;
+    this.#advertisementService = AdvertisementService;
   }
 
   async renderCreatePage(req, res) {
-    return res.render("./pages/panel/create-advertisement.ejs");
+    const { slug } = req.query;
+    const categories = await this.#categoryService.getAllWithoutRelation(slug);
+
+    return res.render("./pages/panel/create-advertisement.ejs", {
+      categories,
+      showBackButton: slug ? true : false,
+    });
   }
 }
 
