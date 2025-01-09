@@ -1,17 +1,30 @@
 <div class="col-lg-12 d-flex align-items-stretch">
   <div class="card w-100">
+    <%if(showBackButton) {%>
     <div class="p-3">
+      <a href="/api/advertisements/create" class="btn btn-danger"
+        >بازگشت به همه دسته ها</a
+      >
+    </div>
+    <%}%>
+    <div class="p-3">
+      <%if(categories && categories.length > 0) {%>
       <ul>
+        <%categories.forEach(category => {%>
         <li>
           <a
-            href="/select-categroy"
+            href="/api/advertisements/create?slug=<%=category.slug%>"
             class="w-100 p-3 d-block bg-light text-dark"
           >
-            <span class="ti ti-users nav-small-cap-icon fs-4"></span>
-            <span>عنوان</span>
+            <span
+              class="ti ti-<%=category.imageName%> nav-small-cap-icon fs-4"
+            ></span>
+            <span><%=category.name%></span>
           </a>
         </li>
+        <%})%>
       </ul>
+      <%}%>
     </div>
   </div>
 </div>
