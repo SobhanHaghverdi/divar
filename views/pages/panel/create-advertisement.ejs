@@ -8,7 +8,7 @@
     </div>
     <%}%>
     <div class="p-3">
-      <%if(categories && categories.length > 0) {%>
+      <%if(!options){%> <%if(categories && categories.length > 0) {%>
       <ul>
         <%categories.forEach(category => {%>
         <li>
@@ -24,6 +24,67 @@
         </li>
         <%})%>
       </ul>
+      <%}%> <%}else{%>
+      <form
+        action="/api/advertisements/create"
+        method="post"
+        enctype="multipart/form-data; charset=utf-8"
+      >
+        <input type="hidden" name="lat" id="lat" />
+        <input type="hidden" name="lng" id="lng" />
+        <input type="hidden" name="categoryId" value="<%=categoryId%>" />
+
+        <div class="p-2">
+          <label>موقعیت مکانی</label>
+          <div id="map" class="w-100" style="height: 300px"></div>
+        </div>
+
+        <div class="p-2">
+          <label>تصاویر آگهی</label>
+          <input type="file" name="images" multiple class="form-control" />
+        </div>
+
+        <div class="p-2">
+          <label>عنوان آگهی</label>
+          <input
+            type="text"
+            name="title"
+            placeholder="عنوان آگهی"
+            class="form-control"
+          />
+        </div>
+
+        <div class="p-2">
+          <label>توضیحات آگهی</label>
+          <textarea
+            name="description"
+            class="form-control"
+            placeholder="توضیحات آگهی"
+          ></textarea>
+        </div>
+
+        <%options.forEach(option => {%>
+        <label><%=option.title%><%=option.required ? " * " : ""%></label>
+        <%if(option.type === "array"){%>
+        <div class="p-2">
+          <select name="<%=option.title%>" class="form-select">
+            <%option.enum.forEach(item => {%>
+            <option value="<%=item%>"><%=item%></option>
+            <%})%>
+          </select>
+        </div>
+        <%}else{%>
+        <div class="p-2">
+          <input
+            type="text"
+            name="<%=option.title%>"
+            class="form-control"
+            placeholder="<%=option.guide%>"
+          />
+        </div>
+        <%}%> <%})%>
+        <button type="submit" class="btn btn-danger m-2">انتشار آگهی</button>
+      </form>
       <%}%>
     </div>
   </div>

@@ -19,10 +19,12 @@ class CategoryService {
   }
 
   async getAllWithoutRelation(slug = undefined) {
+    let category;
+    let result = {};
     const filterMatch = { parent: null };
 
     if (slug) {
-      const category = await this.#model
+      category = await this.#model
         .findOne({ slug: slug.trim() })
         .select("_id")
         .lean();
@@ -31,10 +33,23 @@ class CategoryService {
         return createHttpError.NotFound(CategoryMessage.NotFound);
       }
 
-      filterMatch.parent = category._id;
+      result.categories = await this.#model.aggregate([
+        { $match: { ...filterMatch, parent: category._id } },
+      ]);
+
+      const options = await this.#advertisementOptionService.getAllByCategoryId(
+        category._id
+      );
+
+      result.options = options.length > 0 ? options : undefined;
+    } else {
+      result.categories = await this.#model.aggregate([
+        { $match: filterMatch },
+      ]);
     }
 
-    return await this.#model.aggregate([{ $match: filterMatch }]);
+    result.categoryId = category?._id;
+    return result;
   }
 
   async checkExistenceById(id) {
