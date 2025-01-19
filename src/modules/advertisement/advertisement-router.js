@@ -1,8 +1,15 @@
 import { Router } from "express";
+import uploader from "../../common/utils/multer.js";
 import AdvertisementController from "./advertisement-controller.js";
 
 const advertisementRouter = Router({ caseSensitive: true });
 
 advertisementRouter.get("/create", AdvertisementController.renderCreatePage);
+
+advertisementRouter.post(
+  "/create",
+  uploader.array("images"),
+  AdvertisementController.create
+);
 
 export default advertisementRouter;

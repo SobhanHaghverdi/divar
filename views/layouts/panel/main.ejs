@@ -10,6 +10,12 @@
       href="/assets/images/logos/divar.svg"
     />
     <link rel="stylesheet" href="/assets/css/styles.css" />
+    <link rel="stylesheet" href="/dist/css/fa/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://static.neshan.org/sdk/leaflet/v1.9.4/neshan-sdk/v1.0.8/index.css"
+    />
+    <script src="https://static.neshan.org/sdk/leaflet/v1.9.4/neshan-sdk/v1.0.8/index.js"></script>
   </head>
 
   <body>
@@ -37,6 +43,28 @@
         </div>
       </div>
     </div>
+    <script>
+      const neshanMap = new L.Map("map", {
+        zoom: 8,
+        poi: false,
+        traffic: false,
+        maptype: "neshan",
+        center: [35.699756, 51.338076],
+        key: "web.a58093c2e7b141868d915177d7c4e523",
+      });
+
+      neshanMap.setMapType("osm-bright");
+      const marker = L.marker([35.699756, 51.338076]).addTo(neshanMap);
+
+      neshanMap.on("click", function (e) {
+        const { lat, lng } = e.latlng;
+
+        marker.setLatLng(e.latlng);
+
+        document.getElementById("lat").value = lat;
+        document.getElementById("lng").value = lng;
+      });
+    </script>
     <script src="/assets/libs/jquery/dist/jquery.min.js"></script>
     <script src="/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="/assets/js/sidebarmenu.js"></script>

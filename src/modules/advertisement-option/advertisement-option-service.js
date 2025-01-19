@@ -61,6 +61,10 @@ class AdvertisementOptionService {
       .populate("category");
   }
 
+  async getAllByCategoryId(categoryId) {
+    return await this.#model.find({ category: categoryId }).lean();
+  }
+
   async create(dto) {
     const { key, category, enum: enumList = undefined } = dto;
 
