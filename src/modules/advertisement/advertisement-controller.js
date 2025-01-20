@@ -14,6 +14,11 @@ class AdvertisementController {
     this.#advertisementService = AdvertisementService;
   }
 
+  async getAll(req, res) {
+    const advertisements = await this.#advertisementService.getAll();
+    return res.render("./pages/panel/advertisements.ejs", { advertisements });
+  }
+
   async renderCreatePage(req, res) {
     const { slug } = req.query;
 
