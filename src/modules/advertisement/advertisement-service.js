@@ -1,3 +1,4 @@
+import utf8 from "utf8";
 import axios from "axios";
 import Advertisement from "./advertisement-model.js";
 import { removeProperties } from "../../common/utils/object-helper.js";
@@ -17,12 +18,20 @@ class AdvertisementService {
       "lng",
       "city",
       "title",
-      "images",
       "province",
       "district",
+      "imagesName",
       "categoryId",
       "description",
     ]);
+
+    for (let key in options) {
+      const value = options[key];
+      delete options[key];
+
+      key = utf8.decode(key);
+      options[key] = value;
+    }
 
     const { data } = await axios.get(
       `https://api.neshan.org/v5/reverse?lat=${dto.lat}&lng=${dto.lng}`,

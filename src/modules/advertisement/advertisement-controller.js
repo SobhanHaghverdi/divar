@@ -29,6 +29,8 @@ class AdvertisementController {
   }
 
   async create(req, res) {
+    req.body.imagesName = req?.files?.map((file) => file?.filename);
+
     await this.#advertisementService.create(req.body);
     return res.status(201).json({ message: AdvertisementMessage.Created });
   }
