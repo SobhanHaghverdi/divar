@@ -18,7 +18,7 @@ const AdvertisementSchema = new Schema(
       required: true,
     },
   },
-  { strict: true }
+  { strict: true, timestamps: true }
 );
 
 const Advertisement = model("Advertisement", AdvertisementSchema);

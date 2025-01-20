@@ -5,6 +5,7 @@ import AdvertisementController from "./advertisement-controller.js";
 const advertisementRouter = Router({ caseSensitive: true });
 
 advertisementRouter.get("/create", AdvertisementController.renderCreatePage);
+advertisementRouter.get("/", AdvertisementController.getAll);
 
 advertisementRouter.post(
   "/create",

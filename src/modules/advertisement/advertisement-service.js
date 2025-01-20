@@ -10,6 +10,10 @@ class AdvertisementService {
     this.#model = Advertisement;
   }
 
+  async getAll() {
+    return await this.#model.find({}).lean();
+  }
+
   async create(dto) {
     const options = { ...dto };
 

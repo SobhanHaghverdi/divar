@@ -1,5 +1,6 @@
-import express from "express";
 import "express-async-errors";
+import express from "express";
+import moment from "jalali-moment";
 import cookieParser from "cookie-parser";
 import mainRouter from "./src/app-routes.js";
 import expressEjsLayouts from "express-ejs-layouts";
@@ -35,6 +36,7 @@ async function configureServer() {
     res.render("./pages/auth/login.ejs");
   });
 
+  app.locals.moment = moment;
   app.use("/api", mainRouter);
 
   await configureMongoose();
