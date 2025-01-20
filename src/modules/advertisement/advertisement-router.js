@@ -8,7 +8,7 @@ advertisementRouter.get("/create", AdvertisementController.renderCreatePage);
 
 advertisementRouter.post(
   "/create",
-  uploader.array("images"),
+  uploader.array("images", 10),
   AdvertisementController.create
 );
 
