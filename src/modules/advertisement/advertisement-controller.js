@@ -14,8 +14,11 @@ class AdvertisementController {
     this.#advertisementService = AdvertisementService;
   }
 
-  async getAll(req, res) {
-    const advertisements = await this.#advertisementService.getAll();
+  async getMyAdvertisements(req, res) {
+    const advertisements = await this.#advertisementService.getAllByUserId(
+      req?.user?._id
+    );
+
     return res.render("./pages/panel/advertisements.ejs", { advertisements });
   }
 
@@ -34,6 +37,7 @@ class AdvertisementController {
   }
 
   async create(req, res) {
+    req.body.userId = req?.user?._id;
     req.body.imagesName = req?.files?.map((file) => file?.filename);
 
     await this.#advertisementService.create(req.body);

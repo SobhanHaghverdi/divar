@@ -10,8 +10,8 @@ class AdvertisementService {
     this.#model = Advertisement;
   }
 
-  async getAll() {
-    return await this.#model.find({}).lean();
+  async getAllByUserId(userId) {
+    return await this.#model.find({ userId }).lean();
   }
 
   async create(dto) {
@@ -22,6 +22,7 @@ class AdvertisementService {
       "lng",
       "city",
       "title",
+      "userId",
       "province",
       "district",
       "imagesName",
