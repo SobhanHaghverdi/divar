@@ -57,11 +57,13 @@
                   jMMMM jYYYY`)%>
                 </td>
                 <td>
-                  <a
-                    href="/api/advertisements/delete/<%=advertisement._id%>"
-                    class="btn btn-danger"
-                    >حذف</a
+                  <form
+                    action="/api/advertisements/<%=advertisement._id%>?_method=delete"
+                    method="post"
+                    class="d-inline"
                   >
+                    <button type="submit" class="btn btn-danger">حذف</button>
+                  </form>
                   <a href="/" class="btn btn-success">مشاهده</a>
                 </td>
               </tr>

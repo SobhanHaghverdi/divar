@@ -3,6 +3,7 @@ import express from "express";
 import moment from "jalali-moment";
 import cookieParser from "cookie-parser";
 import mainRouter from "./src/app-routes.js";
+import methodOverrride from "method-override";
 import expressEjsLayouts from "express-ejs-layouts";
 import configureSwagger from "./src/config/swagger-config.js";
 import configureMongoose from "./src/config/mongoose-config.js";
@@ -19,6 +20,7 @@ async function configureServer() {
   app.use(cookieParser(process.env.COOKIE_SECRET_KEY));
   app.use(express.static("public"));
   app.use(expressEjsLayouts);
+  app.use(methodOverrride("_method"));
   app.set("view engine", "ejs");
   app.set("layout", "./layouts/panel/main.ejs");
 
