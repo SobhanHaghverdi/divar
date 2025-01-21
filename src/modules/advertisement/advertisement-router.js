@@ -24,4 +24,10 @@ advertisementRouter.post(
   AdvertisementController.create
 );
 
+advertisementRouter.get(
+  "/delete/:id",
+  authorization,
+  AdvertisementController.delete
+);
+
 export default advertisementRouter;

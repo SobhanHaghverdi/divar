@@ -4,6 +4,11 @@
       <div class="card-body p-4">
         <div class="row">
           <h5 class="card-title fw-semibold mb-4 col-lg-6">آگهی ها</h5>
+          <%if(successMessage) {%>
+          <div class="row">
+            <p class="alert alert-success"><%=successMessage%></p>
+          </div>
+          <%}%>
           <span class="col-lg-6 text-left">
             <div class="w-100 text-left" style="text-align: left">
               <a href="/api/advertisements/create" class="btn btn-info"
@@ -52,7 +57,12 @@
                   jMMMM jYYYY`)%>
                 </td>
                 <td>
-                  <a href="/" class="btn btn-danger">حذف</a>
+                  <a
+                    href="/api/advertisements/delete/<%=advertisement._id%>"
+                    class="btn btn-danger"
+                    >حذف</a
+                  >
+                  <a href="/" class="btn btn-success">مشاهده</a>
                 </td>
               </tr>
               <%})%> <%}%>

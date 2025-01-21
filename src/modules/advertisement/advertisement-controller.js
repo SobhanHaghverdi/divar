@@ -4,6 +4,7 @@ import CategoryService from "../category/category-service.js";
 import AdvertisementMessage from "./advertisement-message.js";
 
 class AdvertisementController {
+  #successMessage;
   #categoryService;
   #advertisementService;
 
@@ -19,7 +20,12 @@ class AdvertisementController {
       req?.user?._id
     );
 
-    return res.render("./pages/panel/advertisements.ejs", { advertisements });
+    res.render("./pages/panel/advertisements.ejs", {
+      advertisements,
+      successMessage: this.#successMessage,
+    });
+
+    this.#successMessage = undefined;
   }
 
   async renderCreatePage(req, res) {
@@ -41,7 +47,16 @@ class AdvertisementController {
     req.body.imagesName = req?.files?.map((file) => file?.filename);
 
     await this.#advertisementService.create(req.body);
-    return res.status(201).json({ message: AdvertisementMessage.Created });
+
+    this.#successMessage = AdvertisementMessage.Created;
+    return res.redirect("/api/advertisements/my");
+  }
+
+  async delete(req, res) {
+    await this.#advertisementService.delete(req.params.id);
+
+    this.#successMessage = AdvertisementMessage.Deleted;
+    return res.redirect("/api/advertisements/my");
   }
 }
 
