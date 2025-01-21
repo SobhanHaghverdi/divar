@@ -2,6 +2,8 @@ import utf8 from "utf8";
 import axios from "axios";
 import Advertisement from "./advertisement-model.js";
 import { removeProperties } from "../../common/utils/object-helper.js";
+import createHttpError from "http-errors";
+import AdvertisementMessage from "./advertisement-message.js";
 
 class AdvertisementService {
   #model;
@@ -10,8 +12,8 @@ class AdvertisementService {
     this.#model = Advertisement;
   }
 
-  async getAll() {
-    return await this.#model.find({}).lean();
+  async getAllByUserId(userId) {
+    return await this.#model.find({ userId }).lean();
   }
 
   async create(dto) {
@@ -22,6 +24,7 @@ class AdvertisementService {
       "lng",
       "city",
       "title",
+      "userId",
       "province",
       "district",
       "imagesName",
@@ -51,6 +54,14 @@ class AdvertisementService {
     dto.coordinates = [dto.lat, dto.lng];
 
     return await this.#model.create(dto);
+  }
+
+  async delete(id) {
+    const advertisement = await this.#model.findByIdAndDelete(id);
+
+    if (!advertisement) {
+      throw new createHttpError.NotFound(AdvertisementMessage.NotFound);
+    }
   }
 }
 
