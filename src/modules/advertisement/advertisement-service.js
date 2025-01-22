@@ -12,6 +12,10 @@ class AdvertisementService {
     this.#model = Advertisement;
   }
 
+  async getById(id) {
+    return await this.#model.findById(id).lean();
+  }
+
   async getAllByUserId(userId) {
     return await this.#model.find({ userId }).lean();
   }

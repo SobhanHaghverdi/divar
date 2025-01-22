@@ -17,6 +17,8 @@ advertisementRouter.get(
   AdvertisementController.getMyAdvertisements
 );
 
+advertisementRouter.get("/:id", AdvertisementController.renderDetailsPage);
+
 advertisementRouter.post(
   "/create",
   authorization,
