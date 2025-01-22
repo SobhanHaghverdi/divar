@@ -42,6 +42,15 @@ class AdvertisementController {
     });
   }
 
+  async renderDetailsPage(req, res) {
+    const advertisement = await this.#advertisementService.getById(
+      req.params.id
+    );
+
+    res.locals.layout = "./layouts/website/main.ejs";
+    return res.render("./pages/home/advertisement.ejs", { advertisement });
+  }
+
   async create(req, res) {
     req.body.userId = req?.user?._id;
     req.body.imagesName = req?.files?.map((file) => file?.filename);

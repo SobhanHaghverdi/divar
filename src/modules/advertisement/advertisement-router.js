@@ -17,6 +17,8 @@ advertisementRouter.get(
   AdvertisementController.getMyAdvertisements
 );
 
+advertisementRouter.get("/:id", AdvertisementController.renderDetailsPage);
+
 advertisementRouter.post(
   "/create",
   authorization,
@@ -24,8 +26,8 @@ advertisementRouter.post(
   AdvertisementController.create
 );
 
-advertisementRouter.get(
-  "/delete/:id",
+advertisementRouter.delete(
+  "/:id",
   authorization,
   AdvertisementController.delete
 );

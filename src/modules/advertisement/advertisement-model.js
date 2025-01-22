@@ -10,8 +10,8 @@ const AdvertisementSchema = new Schema(
     coordinates: { type: [Number], required: true },
     imagesName: { type: [String], default: undefined },
     title: { type: String, required: true, trim: true },
-    userId: { type: Schema.Types.ObjectId, required: true },
     description: { type: String, required: true, trim: true },
+    userId: { type: Schema.Types.ObjectId, required: true, ref: "User" },
     category: {
       type: Schema.Types.ObjectId,
       ref: "Category",
