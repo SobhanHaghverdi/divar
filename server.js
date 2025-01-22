@@ -22,6 +22,8 @@ async function configureServer() {
   app.use(expressEjsLayouts);
   app.use(methodOverrride("_method"));
   app.set("view engine", "ejs");
+  app.set("layout extractScripts", true);
+  app.set("layout extractStyles", true);
   app.set("layout", "./layouts/panel/main.ejs");
 
   app.get("/", (req, res) => {

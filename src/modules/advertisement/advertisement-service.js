@@ -13,7 +13,16 @@ class AdvertisementService {
   }
 
   async getById(id) {
-    return await this.#model.findById(id).lean();
+    const advertisement = await this.#model
+      .findById(id)
+      .lean()
+      .populate("userId", "phoneNumber");
+
+    if (advertisement) {
+      advertisement.userPhoneNumber = advertisement?.userId?.phoneNumber;
+    }
+
+    return advertisement;
   }
 
   async getAllByUserId(userId) {

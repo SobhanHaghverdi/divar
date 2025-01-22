@@ -9,7 +9,9 @@
         </div>
       </div>
       <div class="post-action">
-        <button class="post-button-action button">اطلاعات تماس</button>
+        <button class="post-button-action button" id="call-details">
+          اطلاعات تماس
+        </button>
         <button class="post-button-chat button">چت</button>
 
         <img class="post-bookmark" src="./img/bookmark.svg" alt="" />
@@ -82,3 +84,17 @@
   </div>
   <footer></footer>
 </div>
+<script>
+  const callDetailsBtn = document.getElementById("call-details");
+
+  callDetailsBtn.addEventListener("click", (e) => {
+    Swal.fire({
+      title: "<%=advertisement.userPhoneNumber%>",
+      confirmButtonText: "تماس",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        window.location.href = "tel://<%=advertisement.userPhoneNumber%>";
+      }
+    });
+  });
+</script>
