@@ -9,6 +9,7 @@ import configureSwagger from "./src/config/swagger-config.js";
 import configureMongoose from "./src/config/mongoose-config.js";
 import notFoundHandler from "./src/common/middlewares/not-found-handler.js";
 import globalErrorHandler from "./src/common/middlewares/global-error-handler.js";
+import AdvertisementController from "./src/modules/advertisement/advertisement-controller.js";
 
 const PORT = process.env.PORT;
 
@@ -26,10 +27,7 @@ async function configureServer() {
   app.set("layout extractStyles", true);
   app.set("layout", "./layouts/panel/main.ejs");
 
-  app.get("/", (req, res) => {
-    res.locals.layout = "./layouts/website/main.ejs";
-    res.render("./pages/home/index.ejs");
-  });
+  app.get("/", AdvertisementController.filter);
 
   app.get("/panel", (req, res) => {
     res.render("./pages/panel/dashboard.ejs");
