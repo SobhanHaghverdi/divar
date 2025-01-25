@@ -14,8 +14,16 @@ class CategoryService {
     this.#advertisementOptionService = AdvertisementOptionService;
   }
 
+  async getBySlug(slug) {
+    return await this.#model.findOne({ slug }).lean();
+  }
+
   async getAll() {
     return await this.#model.find({ parent: { $exists: false } }).lean();
+  }
+
+  async getAllParentsById(id) {
+    return await this.#model.find({ parents: id }).lean();
   }
 
   async getAllWithoutRelation(slug = undefined) {

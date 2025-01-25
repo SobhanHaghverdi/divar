@@ -4,12 +4,15 @@ import Advertisement from "./advertisement-model.js";
 import { removeProperties } from "../../common/utils/object-helper.js";
 import createHttpError from "http-errors";
 import AdvertisementMessage from "./advertisement-message.js";
+import CategoryService from "../category/category-service.js";
 
 class AdvertisementService {
   #model;
+  #categoryService;
 
   constructor() {
     this.#model = Advertisement;
+    this.#categoryService = CategoryService;
   }
 
   async getById(id) {
@@ -25,6 +28,28 @@ class AdvertisementService {
     return advertisement;
   }
 
+  async filter(options) {
+    const query = {};
+    let { slug, search } = options;
+
+    if (slug) {
+      const category = await this.#categoryService.getBySlug(slug);
+      let parentCategories = await this.#categoryService.getAllParentsById(
+        category._id
+      );
+
+      parentCategories = parentCategories.map((pc) => pc._id);
+      query.category = { $in: [category._id, ...parentCategories] };
+    }
+
+    if (search) {
+      search = new RegExp(search, "ig");
+      query.$or = [{ title: search }, { description: search }];
+    }
+
+    return await this.#model.find(query).sort("createdAt").lean();
+  }
+
   async getAllByUserId(userId) {
     return await this.#model.find({ userId }).lean();
   }
@@ -38,6 +63,7 @@ class AdvertisementService {
       "city",
       "title",
       "userId",
+      "amount",
       "province",
       "district",
       "imagesName",

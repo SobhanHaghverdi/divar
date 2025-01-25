@@ -28,6 +28,13 @@ class AdvertisementController {
     this.#successMessage = undefined;
   }
 
+  async filter(req, res) {
+    const advertisements = await this.#advertisementService.filter(req.query);
+    res.locals.layout = "./layouts/website/main.ejs";
+
+    return res.render("./pages/home/index.ejs", { advertisements });
+  }
+
   async renderCreatePage(req, res) {
     const { slug } = req.query;
 

@@ -4,6 +4,7 @@ const AdvertisementSchema = new Schema(
   {
     options: Object,
     city: { type: String, trim: true },
+    amount: { type: Number, default: 0 },
     address: { type: String, trim: true },
     province: { type: String, trim: true },
     district: { type: String, trim: true },

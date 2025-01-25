@@ -63,6 +63,16 @@
           ></textarea>
         </div>
 
+        <div class="p-2">
+          <label>مبلغ</label>
+          <input
+            type="number"
+            name="amount"
+            placeholder="مبلغ"
+            class="form-control"
+          />
+        </div>
+
         <%options.forEach(option => {%>
         <label><%=option.title%><%=option.required ? " * " : ""%></label>
         <%if(option.type === "array"){%>
