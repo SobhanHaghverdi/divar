@@ -109,10 +109,10 @@ Create a .env file in the root directory of your project with the following cont
 
 - PORT=3000
 - NODE_ENV="development"
-- MONGODBURL="your_mongodb_connection_string"
-- NESHANAPIKEY="your_neshan_api_key"
-- JWTSECRETKEY="your_jwt_secret_key"
-- COOKIESECRETKEY="your_cookie_secret_key
+- MONGODB_URL="your_mongodb_connection_string"
+- NESHAN_API_KEY="your_neshan_api_key"
+- JWT_SECRET_KEY="your_jwt_secret_key"
+- COOKIE_SECRET_KEY="your_cookie_secret_key
 
 
 Make sure to replace the placeholder values with your actual credentials.
