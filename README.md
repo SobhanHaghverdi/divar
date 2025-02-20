@@ -58,7 +58,7 @@ Once the server is running, you can access the application at http://localhost:$
 
 ## Directory Structure
 
-└── sobhanhaghverdi-divar/
+divar/
     ├── README.md
     ├── package.json
     ├── server.js
@@ -103,7 +103,7 @@ Once the server is running, you can access the application at http://localhost:$
     │       ├── auth/
     │       ├── home/
     │       └── panel/
-    └──
+    
 
 ## Environment Variables
 
