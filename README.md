@@ -57,7 +57,6 @@ bash
 Once the server is running, you can access the application at http://localhost:${your_port}. You can register, log in, and start listing or browsing items.
 
 ## Directory Structure
-
 divar/
     ├── README.md
     ├── package.json
