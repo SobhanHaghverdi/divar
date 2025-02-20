@@ -108,12 +108,12 @@ divar/
 
 Create a .env file in the root directory of your project with the following content:
 
-PORT=3000
-NODE_ENV="development"
-MONGODBURL="your_mongodb_connection_string"
-NESHANAPIKEY="your_neshan_api_key"
-JWTSECRETKEY="your_jwt_secret_key"
-COOKIESECRETKEY="your_cookie_secret_key
+- PORT=3000
+- NODE_ENV="development"
+- MONGODBURL="your_mongodb_connection_string"
+- NESHANAPIKEY="your_neshan_api_key"
+- JWTSECRETKEY="your_jwt_secret_key"
+- COOKIESECRETKEY="your_cookie_secret_key
 
 
 Make sure to replace the placeholder values with your actual credentials.
