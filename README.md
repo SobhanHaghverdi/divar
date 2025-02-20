@@ -33,7 +33,7 @@ Divar is a peer-to-peer marketplace platform built with Node.js and Express, all
 
 1. Clone the repository:
    
-[![Copy](https://img.shields.io/badge/copy-text-brightgreen.svg)](javascript:void(0);)
+![Clipboard Icon](https://upload.wikimedia.org/wikipedia/commons/4/4f/Clipboard_icon.svg)
 > git clone https://github.com/SobhanHaghverdi/divar.git
 
 2. Navigate to the project directory:
