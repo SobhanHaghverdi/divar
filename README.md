@@ -58,51 +58,50 @@ Once the server is running, you can access the application at http://localhost:$
 
 ## Directory Structure
 divar/
-    ├── README.md
-    ├── package.json
-    ├── server.js
-    ├── public/
-    │   ├── assets/
-    │   ├── dist/
-    │   ├── home/
-    │   └── uploads/
-    ├── src/
-    │   ├── app-routes.js
-    │   ├── common/
-    │   │   ├── constants/
-    │   │   │   ├── cookie-enum.js
-    │   │   │   └── env-enum.js
-    │   │   ├── guard/
-    │   │   │   └── authorization-guard.js
-    │   │   ├── messages/
-    │   │   │   └── auth-messages.js
-    │   │   ├── middlewares/
-    │   │   │   ├── global-error-handler.js
-    │   │   │   └── not-found-handler.js
-    │   │   └── utils/
-    │   │       ├── auto-bind.js
-    │   │       ├── multer.js
-    │   │       └── object-helper.js
-    │   ├── config/
-    │   │   ├── mongoose-config.js
-    │   │   └── swagger-config.js
-    │   └── modules/
-    │       ├── advertisement/
-    │       ├── advertisement-option/
-    │       ├── auth/
-    │       ├── category/
-    │       └── user/
-    ├── views/
-    │   ├── layouts/
-    │   │   ├── auth/
-    │   │   ├── panel/
-    │   │   └── website/
-    │   └── pages/
-    │       ├── index.ejs
-    │       ├── auth/
-    │       ├── home/
-    │       └── panel/
-    
+-    ├── README.md
+-    ├── package.json
+-    ├── server.js
+-    ├── public/
+-    │   ├── assets/
+-    │   ├── dist/
+-    │   ├── home/
+-    │   └── uploads/
+-    ├── src/
+-    │   ├── app-routes.js
+-    │   ├── common/
+-    │   │   ├── constants/
+-    │   │   │   ├── cookie-enum.js
+-    │   │   │   └── env-enum.js
+-    │   │   ├── guard/
+-    │   │   │   └── authorization-guard.js
+-    │   │   ├── messages/
+-    │   │   │   └── auth-messages.js
+-    │   │   ├── middlewares/
+-    │   │   │   ├── global-error-handler.js
+-    │   │   │   └── not-found-handler.js
+-    │   │   └── utils/
+-    │   │       ├── auto-bind.js
+-    │   │       ├── multer.js
+-    │   │       └── object-helper.js
+-    │   ├── config/
+-    │   │   ├── mongoose-config.js
+-    │   │   └── swagger-config.js
+-    │   └── modules/
+-    │       ├── advertisement/
+-    │       ├── advertisement-option/
+-    │       ├── auth/
+-    │       ├── category/
+-    │       └── user/
+-    ├── views/
+-    │   ├── layouts/
+-    │   │   ├── auth/
+-    │   │   ├── panel/
+-    │   │   └── website/
+-    │   └── pages/
+-    │       ├── index.ejs
+-    │       ├── auth/
+-    │       ├── home/
+-    │       └── panel/    
 
 ## Environment Variables
 
