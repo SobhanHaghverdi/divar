@@ -33,24 +33,21 @@ Divar is a peer-to-peer marketplace platform built with Node.js and Express, all
 
 1. Clone the repository:
    
-> git clone https://github.com/SobhanHaghverdi/divar.git
+ > git clone https://github.com/SobhanHaghverdi/divar.git
 
 2. Navigate to the project directory:
    
-bash
- cd divar
+ > cd divar
  
 3. Install the dependencies:
    
-bash
- npm install
+ > npm install
  
 4. Set up your environment variables by creating a .env file in the root directory.
 
 5. Start the server:
 
-bash
- npm start
+ > npm start
 
 ## Usage
 Once the server is running, you can access the application at http://localhost:${your_port}. You can register, log in, and start listing or browsing items.
